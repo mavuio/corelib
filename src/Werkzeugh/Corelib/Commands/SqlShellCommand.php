@@ -2,6 +2,7 @@
 namespace Werkzeugh\Corelib\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Config;
 
 class SqlShellCommand extends Command
 {
@@ -26,8 +27,8 @@ class SqlShellCommand extends Command
     {
 
 
-        $config = \Config::get('database.connections');
-        $connection = \Config::get('database.default');
+        $config = Config::get('database.connections');
+        $connection = Config::get('database.default');
         $config = $config[$connection];
 
         $Command="mysql  -u {$config['username']} -p{$config['password']} {$config['database']}";
