@@ -1,6 +1,10 @@
 <?php namespace Werkzeugh\Corelib;
 
 use Illuminate\Support\ServiceProvider;
+use Whoops\Run;
+use Whoops\Handler\PrettyPageHandler;
+use Whoops\Handler\JsonResponseHandler;
+
 
 class CorelibServiceProvider extends ServiceProvider
 {
@@ -22,6 +26,13 @@ class CorelibServiceProvider extends ServiceProvider
         $this->registerSqlShellCommand();
               error_reporting(E_ALL ^ E_NOTICE); // Ignores notices and reports all other kinds
     }
+    
+    public function boot()
+    {
+        $this->customizeWhoops($this->app);
+
+    }
+    
 
     public function registerSqlShellCommand()
     {
@@ -40,4 +51,30 @@ class CorelibServiceProvider extends ServiceProvider
     {
         return array();
     }
+    
+    public function customizeWhoops($app)
+    {
+        if($app->bound("whoops")) {
+            $whoopsDisplayHandler = $app->make("whoops.handler");
+
+            if($whoopsDisplayHandler instanceof JsonResponseHandler) {
+
+                $app['whoops.handler'] = $app->share(function()
+                {
+                    return new PrettyPageHandler;
+                });
+
+            }
+
+             $whoopsDisplayHandler = $app->make("whoops.handler");
+             
+            if($whoopsDisplayHandler instanceof PrettyPageHandler) {
+                
+                // $whoopsDisplayHandler->setEditor("textmate");
+                $whoopsDisplayHandler->setResourcesPath( __DIR__ . '/Resources/Whoops');
+            }
+        }
+    }
+    
+    
 }
