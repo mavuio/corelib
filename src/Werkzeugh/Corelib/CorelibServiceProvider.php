@@ -21,11 +21,24 @@ class CorelibServiceProvider extends ServiceProvider
 	   *
 	   * @return void
 	   */
-    public function register()
-    {
-        $this->registerSqlShellCommand();
-              error_reporting(E_ALL ^ E_NOTICE); // Ignores notices and reports all other kinds
-    }
+   public function register()
+   {
+       $this->registerSqlShellCommand();
+       error_reporting(E_ALL ^ E_NOTICE); // Ignores notices and reports all other kinds
+
+       $this->app->bindShared('werkzeugh.corelibhelpers', function ($app) {
+           return new CorelibHelpers();
+       });
+
+       // Shortcut so developers don't need to add an Alias in app/config/app.php
+       $this->app->booting(function()
+       {
+           $loader = \Illuminate\Foundation\AliasLoader::getInstance();
+           $loader->alias('Core', 'Werkzeugh\Corelib\Facades\CorelibHelpersFacade');
+       });
+
+
+   }
     
     public function boot()
     {
