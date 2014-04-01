@@ -40,10 +40,28 @@ class CorelibServiceProvider extends ServiceProvider
 
    }
     
+   public function setupLogFiles($app)
+   {
+       $logFile = 'log-'.php_sapi_name().'.txt';
+
+       \Log::useDailyFiles(storage_path().'/logs/'.$logFile);
+   }
+    
     public function boot()
     {
         $this->customizeWhoops($this->app);
+        $this->setupLogFiles($this->app);
+        $this->setupDbLogging($this->app);
+    }
+    
+    public function setupDbLogging($app)
+    {
+        \Event::listen('illuminate.query', function($sql,$bindings)
+        {
 
+          if($GLOBALS['debugsql']) { $x=Array($sql,$bindings); $x=(print_r($x,1));echo "\n<li>query: <pre>$x</pre>"; }($sql);
+        });
+    
     }
     
 
