@@ -35,6 +35,7 @@ class CorelibServiceProvider extends ServiceProvider
        {
            $loader = \Illuminate\Foundation\AliasLoader::getInstance();
            $loader->alias('Core', 'Werkzeugh\Corelib\Facades\CorelibHelpersFacade');
+           $loader->alias('CarbonDate', 'Carbon\Carbon');
        });
 
 
