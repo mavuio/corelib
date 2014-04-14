@@ -23,7 +23,7 @@ class CorelibServiceProvider extends ServiceProvider
 	   */
    public function register()
    {
-       $this->registerSqlShellCommand();
+       $this->registerCommands();
        error_reporting(E_ALL ^ E_NOTICE); // Ignores notices and reports all other kinds
 
        $this->app->bindShared('werkzeugh.corelibhelpers', function ($app) {
@@ -39,21 +39,21 @@ class CorelibServiceProvider extends ServiceProvider
 
 
    }
-    
+
    public function setupLogFiles($app)
    {
        $logFile = 'log-'.php_sapi_name().'.txt';
 
        \Log::useDailyFiles(storage_path().'/logs/'.$logFile);
    }
-    
+
     public function boot()
     {
         $this->customizeWhoops($this->app);
         $this->setupLogFiles($this->app);
         $this->setupDbLogging($this->app);
     }
-    
+
     public function setupDbLogging($app)
     {
         \Event::listen('illuminate.query', function($sql,$bindings)
@@ -61,16 +61,23 @@ class CorelibServiceProvider extends ServiceProvider
 
           if($GLOBALS['debugsql']) { $x=Array($sql,$bindings); $x=(print_r($x,1));echo "\n<li>query: <pre>$x</pre>"; }($sql);
         });
-    
-    }
-    
 
-    public function registerSqlShellCommand()
+    }
+
+
+    public function registerCommands()
     {
         $this->app['sqlshell'] = $this->app->share(function ($app) {
             return new Commands\SqlShellCommand($app);
         });
         $this->commands(array('sqlshell'));
+
+
+        $this->app['sqldump'] = $this->app->share(function ($app) {
+            return new Commands\SqlDumpCommand($app);
+        });
+        $this->commands(array('sqldump'));
+
     }
 
        /**
@@ -82,7 +89,7 @@ class CorelibServiceProvider extends ServiceProvider
     {
         return array();
     }
-    
+
     public function customizeWhoops($app)
     {
         if($app->bound("whoops")) {
@@ -98,14 +105,14 @@ class CorelibServiceProvider extends ServiceProvider
             }
 
              $whoopsDisplayHandler = $app->make("whoops.handler");
-             
+
             if($whoopsDisplayHandler instanceof PrettyPageHandler) {
-                
+
                 // $whoopsDisplayHandler->setEditor("textmate");
                 $whoopsDisplayHandler->setResourcesPath( __DIR__ . '/Resources/Whoops');
             }
         }
     }
-    
-    
+
+
 }
