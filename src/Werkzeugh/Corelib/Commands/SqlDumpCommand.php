@@ -30,13 +30,15 @@ class SqlDumpCommand extends Command
         $connection = Config::get('database.default');
         $config = $config[$connection];
 
-        $Command="mysqldump  -u {$config['username']} -p{$config['password']}  --skip-lock-tables {$config['database']} > /tmp/{$config['database']}.sql";
+        $Command="mysqldump  -u {$config['username']} -p'{$config['password']}'  --skip-lock-tables {$config['database']} > /tmp/{$config['database']}.sql";
         $this->output->writeLn($Command);
 
-        $Command="scp  root@server /tmp/{$config['database']}.sql /tmp/{$config['database']}.sql";
+        $hostname=shell_exec("hostname");
+
+        $Command="scp  root@{$hostname}:/tmp/{$config['database']}.sql /tmp/{$config['database']}.sql";
         $this->output->writeLn($Command);
 
-        $Command="mysql -u {$config['username']} -p{$config['password']} {$config['database']} < /tmp/{$config['database']}.sql";
+        $Command="mysql -u {$config['username']} -p'{$config['password']}' {$config['database']} < /tmp/{$config['database']}.sql";
         $this->output->writeLn($Command);
 
     }
