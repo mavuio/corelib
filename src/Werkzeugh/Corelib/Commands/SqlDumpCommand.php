@@ -33,7 +33,7 @@ class SqlDumpCommand extends Command
         $Command="mysqldump  -u {$config['username']} -p'{$config['password']}'  --skip-lock-tables {$config['database']} > /tmp/{$config['database']}.sql";
         $this->output->writeLn($Command);
 
-        $hostname=shell_exec("hostname");
+        $hostname=trim(shell_exec("hostname"));
 
         $Command="scp  root@{$hostname}:/tmp/{$config['database']}.sql /tmp/{$config['database']}.sql";
         $this->output->writeLn($Command);
