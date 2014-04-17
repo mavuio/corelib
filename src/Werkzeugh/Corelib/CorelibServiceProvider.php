@@ -23,8 +23,8 @@ class CorelibServiceProvider extends ServiceProvider
 	   */
    public function register()
    {
-       $this->registerCommands();
        error_reporting(E_ALL ^ E_NOTICE); // Ignores notices and reports all other kinds
+       $this->registerCommands();
 
        $this->app->bindShared('werkzeugh.corelibhelpers', function ($app) {
            return new CorelibHelpers();
