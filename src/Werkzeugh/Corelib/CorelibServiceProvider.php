@@ -42,10 +42,31 @@ class CorelibServiceProvider extends ServiceProvider
 
    public function setupLogFiles($app)
    {
-       $logFile = 'log-'.php_sapi_name().'.txt';
 
-       \Log::useDailyFiles(storage_path().'/logs/'.$logFile);
-   }
+    $logFile = 'log.txt';
+
+    \Log::useDailyFiles(storage_path().'/logs/'.$logFile);
+
+
+    // \Log::listen(function($level, $message, $context) {
+
+    //     // Save the php sapi and date, because the closure needs to be serialized
+    //   $apiName = php_sapi_name();
+    //   $date = new \DateTime;
+
+    //   \Queue::push(function() use ($level, $message, $context, $apiName, $date){
+    //     \DB::insert("INSERT INTO logs (php_sapi_name, level, message, context, created_at) VALUES (?, ?, ?, ?, ?)", array(
+    //       $apiName,
+    //       $level,
+    //       $message,
+    //       json_encode($context),
+    //       $date
+    //       ));
+    //   });
+
+    // });
+
+  }
 
     public function boot()
     {
