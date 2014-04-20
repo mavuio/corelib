@@ -9,7 +9,7 @@ use Whoops\Handler\JsonResponseHandler;
 class CorelibServiceProvider extends ServiceProvider
 {
 
-       /**
+    /**
 	   * Indicates if loading of the provider is deferred.
 	   *
 	   * @var bool
@@ -44,7 +44,6 @@ class CorelibServiceProvider extends ServiceProvider
        $this->app->register('Clockwork\Support\Laravel\ClockworkServiceProvider');
        $this->app->register('Cartalyst\Sentry\SentryServiceProvider');
        $this->app->register('Werkzeugh\Listr\ListrServiceProvider');
-
 
    }
 
