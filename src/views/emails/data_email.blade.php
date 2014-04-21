@@ -3,7 +3,7 @@ w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>error-notice</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=3Dutf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <style type="text/css">
     .ExternalClass {
         display:block !important;
@@ -21,10 +21,10 @@ w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
         border: 0 !important;
     }
     @media only screen and (max-width:480px) {
-        table[class=3D"wrapper"] {
+        table[class="wrapper"] {
             min-width:320px !important;
         }
-        table[class=3D"flexible"] {
+        table[class="flexible"] {
             width:100% !important;
         }
         *[class].img-flex img {
@@ -34,7 +34,7 @@ w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
         *[class].stacking.text {
             display: block;
             text-align: center !important;
-            padd=ing: 12px 12px 0 !important
+            padding: 12px 12px 0 !important
         }
         *[class].stacking {
             display: block;
@@ -43,7 +43,7 @@ w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
         *[class].inventor.cells {
             display:block;
             margin: 0 auto;
-            padding-bottom: 24p=x;
+            padding-bottom: 24px;
         }
         ;
     }
@@ -58,24 +58,19 @@ w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
         text-resize: 100%;
     }
     </style>
-    <table class="wrapper" width="100%" cellspacing="0" cellpadding="0"=b gcolor="#EEEEEE">
+    <table class="wrapper" width="100%" cellspacing="0" cellpadding="0" bgcolor="#EEEEEE">
         <tr>
             <td style="padding:0px 10px 40px;">
-                <table class="flexible" width="600px" align="center" cellpadding="0=
-" cellspacing="0">
+                <table class="flexible" width="600px" align="center" cellpadding="0" cellspacing="0">
 
                     <tr>
                         <td style="border-radius: 3px">
                             <table width="100%" cellpadding="0" cellspacing="0">
                                 <tr>
-                                    <td style="padding: 32px 16px; border-top-left-radius: 3px; border-top-ri=
-ght-radius: 3px" bgcolor="#FFFFFF">
-                                        <table class="flexible" align="left" cellpadding="0" cellspacing="0=
-" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace=
-:0pt;">
+                                    <td style="padding: 32px 16px; border-top-left-radius: 3px; border-top-right-radius: 3px" bgcolor="#FFFFFF">
+                                        <table class="flexible" align="left" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                                             <tr>
-                                                <td class="stacking text" align="left" style="font:18px Helvetica, Ar=
-ial, sans-serif; line-height:28px; color:#5E6367; padding: 0px 24px 0px">
+                                                <td class="stacking text" align="left" style="font:18px Helvetica, Arial, sans-serif; line-height:28px; color:#5E6367; padding: 0px 24px 0px">
                                                     <p style="margin: 0px; font: 24px Helvetica, Arial, sans-serif; padding:0 0px 8px">An Error occured</p>
 
                                                     <div>&nbsp;</div>
