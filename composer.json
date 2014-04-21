@@ -15,7 +15,8 @@
         "werkzeugh/listr": ">0.5@beta",
         "cartalyst/sentry":"2.1.*",
         "way/generators": "2.*",
-        "fzaninotto/faker": "v1.3.0"
+        "fzaninotto/faker": "v1.3.0",
+        "mrjuliuss/syntara": "1.2.*"
     },
     "require-dev": {
     },
