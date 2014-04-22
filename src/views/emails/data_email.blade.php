@@ -60,7 +60,7 @@ w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     </style>
     <table class="wrapper" width="100%" cellspacing="0" cellpadding="0" bgcolor="#EEEEEE">
         <tr>
-            <td style="padding:0px 10px 40px;">
+            <td style="padding:40px 10px 40px;">
                 <table class="flexible" width="600px" align="center" cellpadding="0" cellspacing="0">
 
                     <tr>
@@ -70,7 +70,7 @@ w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                                     <td style="padding: 32px 16px; border-top-left-radius: 3px; border-top-right-radius: 3px" bgcolor="#FFFFFF">
                                         <table class="flexible" align="left" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                                             <tr>
-                                                <td class="stacking text" align="left" style="font:18px Helvetica, Arial, sans-serif; line-height:28px; color:#5E6367; padding: 0px 24px 0px">
+                                                <td class="stacking text" align="left" style="font:14px Helvetica, Arial, sans-serif; line-height:1.2; color:#5E6367; padding: 0px 24px 0px">
                                                     <p style="margin: 0px; font: 24px Helvetica, Arial, sans-serif; padding:0 0px 8px">An Error occured</p>
 
                                                     <div>&nbsp;</div>
@@ -78,7 +78,7 @@ w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                                                     <div>&nbsp;</div>
                                                     Error-details:
                                                     <div>&nbsp;</div>
-                                                        <pre>{{print_r($data)}}</pre>
+                                                        <pre>{{print_r($data, 1)}}</pre>
                                                     <div>&nbsp;</div>
                                                 </td>
                                             </tr>
