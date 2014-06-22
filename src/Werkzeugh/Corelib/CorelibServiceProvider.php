@@ -9,7 +9,7 @@ use Whoops\Handler\JsonResponseHandler;
 class CorelibServiceProvider extends ServiceProvider
 {
 
-       /**
+    /**
 	   * Indicates if loading of the provider is deferred.
 	   *
 	   * @var bool
@@ -23,8 +23,8 @@ class CorelibServiceProvider extends ServiceProvider
 	   */
    public function register()
    {
-       $this->registerSqlShellCommand();
        error_reporting(E_ALL ^ E_NOTICE); // Ignores notices and reports all other kinds
+       $this->registerCommands();
 
        $this->app->bindShared('werkzeugh.corelibhelpers', function ($app) {
            return new CorelibHelpers();
@@ -35,26 +35,65 @@ class CorelibServiceProvider extends ServiceProvider
        {
            $loader = \Illuminate\Foundation\AliasLoader::getInstance();
            $loader->alias('Core', 'Werkzeugh\Corelib\Facades\CorelibHelpersFacade');
+<<<<<<< HEAD
            $loader->alias('CarbonDate', 'Carbon\Carbon');
+=======
+           $loader->alias('Sentry','Cartalyst\Sentry\Facades\Laravel\Sentry');
+           $loader->alias('Clockwork','Clockwork\Support\Laravel\Facade');
+
+>>>>>>> b0d7e40cf5aadbf8c35ae0615e9a0c65140478cd
        });
 
+       $this->app->register('Way\Generators\GeneratorsServiceProvider');
+       $this->app->register('Werkzeugh\Corelib\MailServiceProvider');
+       $this->app->register('Clockwork\Support\Laravel\ClockworkServiceProvider');
+       $this->app->register('Cartalyst\Sentry\SentryServiceProvider');
+       $this->app->register('Mrjuliuss\Syntara\SyntaraServiceProvider');
+       $this->app->register('Werkzeugh\Listr\ListrServiceProvider');
 
    }
-    
-   public function setupLogFiles($app)
-   {
-       $logFile = 'log-'.php_sapi_name().'.txt';
 
-       \Log::useDailyFiles(storage_path().'/logs/'.$logFile);
-   }
-    
     public function boot()
     {
+        $this->package('werkzeugh/corelib');
+
         $this->customizeWhoops($this->app);
         $this->setupLogFiles($this->app);
         $this->setupDbLogging($this->app);
     }
-    
+
+   public function setupLogFiles($app)
+   {
+
+    $logFile = 'log.txt';
+
+    \Log::useDailyFiles(storage_path().'/logs/'.$logFile);
+
+
+    // \Log::listen(function($level, $message, $context) {
+
+    //     // Save the php sapi and date, because the closure needs to be serialized
+    //   $apiName = php_sapi_name();
+    //   $date = new \DateTime;
+
+    //   \Queue::push(function() use ($level, $message, $context, $apiName, $date){
+    //     \DB::insert("INSERT INTO logs (php_sapi_name, level, message, context, created_at) VALUES (?, ?, ?, ?, ?)", array(
+    //       $apiName,
+    //       $level,
+    //       $message,
+    //       json_encode($context),
+    //       $date
+    //       ));
+    //   });
+
+    // });
+
+  }
+
+
+
+
+
     public function setupDbLogging($app)
     {
         \Event::listen('illuminate.query', function($sql,$bindings)
@@ -62,16 +101,23 @@ class CorelibServiceProvider extends ServiceProvider
 
           if($GLOBALS['debugsql']) { $x=Array($sql,$bindings); $x=(print_r($x,1));echo "\n<li>query: <pre>$x</pre>"; }($sql);
         });
-    
-    }
-    
 
-    public function registerSqlShellCommand()
+    }
+
+
+    public function registerCommands()
     {
         $this->app['sqlshell'] = $this->app->share(function ($app) {
             return new Commands\SqlShellCommand($app);
         });
         $this->commands(array('sqlshell'));
+
+
+        $this->app['sqldump'] = $this->app->share(function ($app) {
+            return new Commands\SqlDumpCommand($app);
+        });
+        $this->commands(array('sqldump'));
+
     }
 
        /**
@@ -83,7 +129,7 @@ class CorelibServiceProvider extends ServiceProvider
     {
         return array();
     }
-    
+
     public function customizeWhoops($app)
     {
         if($app->bound("whoops")) {
@@ -99,14 +145,14 @@ class CorelibServiceProvider extends ServiceProvider
             }
 
              $whoopsDisplayHandler = $app->make("whoops.handler");
-             
+
             if($whoopsDisplayHandler instanceof PrettyPageHandler) {
-                
+
                 // $whoopsDisplayHandler->setEditor("textmate");
                 $whoopsDisplayHandler->setResourcesPath( __DIR__ . '/Resources/Whoops');
             }
         }
     }
-    
-    
+
+
 }
