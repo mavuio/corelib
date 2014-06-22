@@ -35,13 +35,9 @@ class CorelibServiceProvider extends ServiceProvider
        {
            $loader = \Illuminate\Foundation\AliasLoader::getInstance();
            $loader->alias('Core', 'Werkzeugh\Corelib\Facades\CorelibHelpersFacade');
-<<<<<<< HEAD
            $loader->alias('CarbonDate', 'Carbon\Carbon');
-=======
            $loader->alias('Sentry','Cartalyst\Sentry\Facades\Laravel\Sentry');
            $loader->alias('Clockwork','Clockwork\Support\Laravel\Facade');
-
->>>>>>> b0d7e40cf5aadbf8c35ae0615e9a0c65140478cd
        });
 
        $this->app->register('Way\Generators\GeneratorsServiceProvider');
