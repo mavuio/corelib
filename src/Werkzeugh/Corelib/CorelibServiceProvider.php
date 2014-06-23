@@ -37,12 +37,12 @@ class CorelibServiceProvider extends ServiceProvider
            $loader->alias('Core', 'Werkzeugh\Corelib\Facades\CorelibHelpersFacade');
            $loader->alias('CarbonDate', 'Carbon\Carbon');
            $loader->alias('Sentry','Cartalyst\Sentry\Facades\Laravel\Sentry');
-           $loader->alias('Clockwork','Clockwork\Support\Laravel\Facade');
+           //$loader->alias('Clockwork','Clockwork\Support\Laravel\Facade');
        });
 
        $this->app->register('Way\Generators\GeneratorsServiceProvider');
        $this->app->register('Werkzeugh\Corelib\MailServiceProvider');
-       $this->app->register('Clockwork\Support\Laravel\ClockworkServiceProvider');
+       //$this->app->register('Clockwork\Support\Laravel\ClockworkServiceProvider');
        $this->app->register('Cartalyst\Sentry\SentryServiceProvider');
        $this->app->register('Mrjuliuss\Syntara\SyntaraServiceProvider');
        $this->app->register('Werkzeugh\Listr\ListrServiceProvider');
