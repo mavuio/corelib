@@ -41,7 +41,7 @@ class CorelibServiceProvider extends ServiceProvider
        });
 
        $this->app->register('Way\Generators\GeneratorsServiceProvider');
-       $this->app->register('Werkzeugh\Corelib\MailServiceProvider');
+     //  $this->app->register('Werkzeugh\Corelib\MailServiceProvider');
        //$this->app->register('Clockwork\Support\Laravel\ClockworkServiceProvider');
        $this->app->register('Cartalyst\Sentry\SentryServiceProvider');
        $this->app->register('Mrjuliuss\Syntara\SyntaraServiceProvider');
