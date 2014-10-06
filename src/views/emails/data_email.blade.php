@@ -78,7 +78,7 @@ w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                                                     <div>&nbsp;</div>
                                                     Error-details:
                                                     <div>&nbsp;</div>
-                                                        <pre>{{print_r($data, 1)}}</pre>
+                                                        <pre style="font-size:8px">{{print_r($data, 1)}}</pre>
                                                     <div>&nbsp;</div>
                                                 </td>
                                             </tr>
