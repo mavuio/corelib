@@ -30,11 +30,16 @@ class CorelibServiceProvider extends ServiceProvider
            return new CorelibHelpers();
        });
 
+       $this->app->bindShared('werkzeugh.ngform', function ($app) {
+           return new NgForm();
+       });
+
        // Shortcut so developers don't need to add an Alias in app/config/app.php
        $this->app->booting(function()
        {
            $loader = \Illuminate\Foundation\AliasLoader::getInstance();
            $loader->alias('Core', 'Werkzeugh\Corelib\Facades\CorelibHelpersFacade');
+           $loader->alias('NgForm', 'Werkzeugh\Corelib\Facades\NgFormFacade');
            $loader->alias('CarbonDate', 'Carbon\Carbon');
            $loader->alias('Sentry','Cartalyst\Sentry\Facades\Laravel\Sentry');
            //$loader->alias('Clockwork','Clockwork\Support\Laravel\Facade');
