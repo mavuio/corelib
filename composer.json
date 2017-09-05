@@ -9,7 +9,7 @@
     ],
     "require": {
         "php": ">=5.3.0",
-        "illuminate/support": "4.0.*",
+        "illuminate/support": "4.*",
         "cartalyst/sentry":"2.1.*",
         "itsgoingd/clockwork": "1.*",
         "werkzeugh/listr": ">0.5@beta",
